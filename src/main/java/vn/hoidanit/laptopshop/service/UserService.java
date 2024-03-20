@@ -21,7 +21,14 @@ public class UserService {
         return this.userRepository.findByEmail(email);
     }
     public User handleSaveUser(User user) {
-        User result = this.userRepository.save(user);
+        User currentUser = this.userRepository.findById(user.getId());
+        if(currentUser != null){
+            currentUser.setEmail(user.getEmail());
+            currentUser.setPhone(user.getPhone());
+            currentUser.setFullName(user.getFullName());
+            currentUser.setAddress(user.getAddress());
+        }
+        User result = this.userRepository.save(currentUser);
         System.out.println("handle service    " + result);
         return result;
     }
@@ -30,6 +37,12 @@ public class UserService {
         return this.userRepository.findById(id);
     }
 
+    public void deleteUser(long id){
+        Long objectId = id;
+        System.out.println("service>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+         this.userRepository.deleteById(id);
+    }
    
 
    

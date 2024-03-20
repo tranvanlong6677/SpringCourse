@@ -72,13 +72,14 @@ public class UserController {
         return "admin/user/detailUser";
 
     }
-    @RequestMapping(value = "/admin/user/update/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/user/update", method = RequestMethod.POST)
     public String updateUser(@ModelAttribute("userDataAfter") User userDataAfter) {
         System.out.println("userDataAfter" + userDataAfter);
-        User result = this.userService.handleSaveUser(userDataAfter);
+        this.userService.handleSaveUser(userDataAfter);
+        System.out.println("run hihihihihihihihihihihihihihihihihihihih");
         // System.out.println("result" + result);
         // return "redirect:/admin/user";
-        return "hello";
+        return "redirect:/admin/user";
 
     }
     @RequestMapping(value = "/admin/user/update/{id}", method = RequestMethod.GET)
@@ -91,6 +92,32 @@ public class UserController {
         model.addAttribute("userDataBefore", userDataBefore);
         // model.addAttribute("userDataUpdate", userDataUpdate);
         return "admin/user/update";
+
+    }
+
+    @RequestMapping(value = "/admin/user/delete/{id}", method = RequestMethod.GET)
+    public String getUserDeletePage(Model model,@PathVariable long id) {
+        // User userDataBefore = this.userService.getUserById(id);
+        // User userDataUpdate = this.userService.getUserById(id);
+        // System.out.println("check detail " + userDataUpdate);
+        model.addAttribute("id", id);
+    
+        // model.addAttribute("userDataUpdate", userDataUpdate);
+        return "admin/user/delete";
+
+    }
+
+    @RequestMapping(value = "/admin/user/delete/{id}", method = RequestMethod.POST)
+    public String handleDeleteUser(@PathVariable long id) {
+        // User userDataBefore = this.userService.getUserById(id);
+        // User userDataUpdate = this.userService.getUserById(id);
+        // System.out.println("check detail " + userDataUpdate);
+        
+        // model.addAttribute("userDataUpdate", userDataUpdate);
+        System.out.println(">>>>>>>>>>> id " + id);
+        
+        this.userService.deleteUser(id);
+        return "redirect:/admin/user";
 
     }
 

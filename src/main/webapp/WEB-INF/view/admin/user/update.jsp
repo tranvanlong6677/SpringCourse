@@ -21,7 +21,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
     <form
       class="container my-5"
       method="POST"
-      action="/admin/user/update/${userDataBefore.id}"
+      action="/admin/user/update"
       modelAttribute="userDataAfter"
     >
       <div class="row">
@@ -38,7 +38,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
               class="form-control"
               name="id"
               value="${userDataBefore.id}"
-              disabled
+              readonly
             />
           </div>
           <div class="mb-3 col-12">

@@ -51,7 +51,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <a href="user/update/${user.id}" class="btn btn-warning"
                   >Update</a
                 >
-                <button class="btn btn-danger">Delete</button>
+                <a href="user/delete/${user.id}" class="btn btn-danger"
+                  >Delete</a
+                >
               </td>
             </tr>
           </c:forEach>
